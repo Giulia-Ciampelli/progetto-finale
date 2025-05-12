@@ -6,6 +6,7 @@ import org.lessons.java.games.gamer_hub.model.Game;
 import org.lessons.java.games.gamer_hub.model.OnSale;
 import org.lessons.java.games.gamer_hub.service.GameService;
 import org.lessons.java.games.gamer_hub.service.OnSaleService;
+import org.lessons.java.games.gamer_hub.service.TagService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -30,6 +31,9 @@ public class GameController {
     @Autowired
     private OnSaleService saleService;
 
+    @Autowired
+    private TagService tagService;
+
     // index
     @GetMapping
     public String index(Authentication authentication, Model model) {
@@ -44,10 +48,12 @@ public class GameController {
     public String show(@PathVariable("id") int id, Model model) {
         Game game = gameService.getById(id);
         model.addAttribute("game", game);
+        model.addAttribute("sales", game.getSales());
+        model.addAttribute("tags", game.getTags());
         return "games/show";
     }
 
-    // TODO: ricorda di mettere gli attributi anche per le altre tabelle
+    // TODO: ricorda di mettere gli attributi anche per le altre tabelle (manca piattaforma)
     // #region ricerche personalizzate
     @GetMapping("/search-by-name")
     public String searchByName(@RequestParam(name = "name") String name, Model model) {
@@ -62,6 +68,7 @@ public class GameController {
     @GetMapping("/create")
     public String create(Model model) {
         model.addAttribute("game", new Game());
+        model.addAttribute("tags", tagService.findAll());
         return "games/create-edit";
     }
 
@@ -69,6 +76,7 @@ public class GameController {
     public String store(@Valid @ModelAttribute("game") Game formGame, BindingResult bindingResult, Model model) {
 
         if (bindingResult.hasErrors()) {
+            model.addAttribute("tags", tagService.findAll());
             return "games/create-edit";
         }
 
@@ -80,14 +88,17 @@ public class GameController {
     @GetMapping("/edit/{id}")
     public String edit(@PathVariable int id, Model model) {
         model.addAttribute("game", gameService.getById(id));
+        model.addAttribute("tags", tagService.findAll());
         model.addAttribute("edit", true);
         return "games/create-edit";
     }
 
     @PostMapping("/edit/{id}")
-    public String update(@PathVariable int id, @Valid @ModelAttribute("game") Game formGame, BindingResult bindingResult, Model model) {
-        
+    public String update(@PathVariable int id, @Valid @ModelAttribute("game") Game formGame,
+            BindingResult bindingResult, Model model) {
+
         if (bindingResult.hasErrors()) {
+            model.addAttribute("tags", tagService.findAll());
             return "games/create-edit";
         }
 

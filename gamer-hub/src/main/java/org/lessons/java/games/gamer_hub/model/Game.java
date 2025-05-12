@@ -9,6 +9,9 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Min;
@@ -40,6 +43,10 @@ public class Game {
     @JsonManagedReference
     private List<OnSale> sales;
 
+    @ManyToMany
+    @JoinTable(name = "game_tag", joinColumns = @JoinColumn(name = "game_id"), inverseJoinColumns = @JoinColumn(name = "tag_id"))
+    private List<Tag> tags;
+
     // #region getter e setter
     public int getId() {
         return id;
@@ -61,6 +68,10 @@ public class Game {
         return sales;
     }
 
+    public List<Tag> getTags() {
+        return tags;
+    }
+
     public void setId(int id) {
         this.id = id;
     }
@@ -79,6 +90,10 @@ public class Game {
 
     public void setSales(List<OnSale> sales) {
         this.sales = sales;
+    }
+
+    public void setTags(List<Tag> tags) {
+        this.tags = tags;
     }
 
     // #endregion getter e setter
