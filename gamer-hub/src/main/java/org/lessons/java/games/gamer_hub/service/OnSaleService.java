@@ -41,10 +41,6 @@ public class OnSaleService {
         return saleRepository.findAll(Sort.by("finishDate"));
     }
 
-    public List<OnSale> findByName(String name) {
-        return saleRepository.findByNameContainingIgnoreCase(name);
-    }
-
     // create
     public OnSale create(OnSale formSale) {
         return saleRepository.save(formSale);

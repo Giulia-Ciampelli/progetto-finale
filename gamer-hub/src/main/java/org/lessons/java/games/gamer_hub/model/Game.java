@@ -46,6 +46,10 @@ public class Game {
     @ManyToMany
     @JoinTable(name = "game_tag", joinColumns = @JoinColumn(name = "game_id"), inverseJoinColumns = @JoinColumn(name = "tag_id"))
     private List<Tag> tags;
+    
+    @ManyToMany
+    @JoinTable(name = "game_platform", joinColumns = @JoinColumn(name = "game_id"), inverseJoinColumns = @JoinColumn(name = "platform_id"))
+    private List<Platform> platforms;
 
     // #region getter e setter
     public int getId() {
@@ -76,6 +80,10 @@ public class Game {
         this.id = id;
     }
 
+    public List<Platform> getPlatforms() {
+        return platforms;
+    }
+
     public void setName(String name) {
         this.name = name;
     }
@@ -94,6 +102,10 @@ public class Game {
 
     public void setTags(List<Tag> tags) {
         this.tags = tags;
+    }
+
+    public void setPlatforms(List<Platform> platforms) {
+        this.platforms = platforms;
     }
 
     // #endregion getter e setter
