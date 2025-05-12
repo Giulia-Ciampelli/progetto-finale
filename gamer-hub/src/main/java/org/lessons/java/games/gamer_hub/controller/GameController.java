@@ -6,6 +6,7 @@ import org.lessons.java.games.gamer_hub.model.Game;
 import org.lessons.java.games.gamer_hub.model.OnSale;
 import org.lessons.java.games.gamer_hub.service.GameService;
 import org.lessons.java.games.gamer_hub.service.OnSaleService;
+import org.lessons.java.games.gamer_hub.service.PlatformService;
 import org.lessons.java.games.gamer_hub.service.TagService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -34,6 +35,9 @@ public class GameController {
     @Autowired
     private TagService tagService;
 
+    @Autowired
+    private PlatformService platformService;
+
     // index
     @GetMapping
     public String index(Authentication authentication, Model model) {
@@ -53,7 +57,6 @@ public class GameController {
         return "games/show";
     }
 
-    // TODO: ricorda di mettere gli attributi anche per le altre tabelle (manca piattaforma)
     // #region ricerche personalizzate
     @GetMapping("/search-by-name")
     public String searchByName(@RequestParam(name = "name") String name, Model model) {
@@ -69,6 +72,7 @@ public class GameController {
     public String create(Model model) {
         model.addAttribute("game", new Game());
         model.addAttribute("tags", tagService.findAll());
+        model.addAttribute("tags", platformService.findAll());
         return "games/create-edit";
     }
 
@@ -77,6 +81,7 @@ public class GameController {
 
         if (bindingResult.hasErrors()) {
             model.addAttribute("tags", tagService.findAll());
+            model.addAttribute("tags", platformService.findAll());
             return "games/create-edit";
         }
 
@@ -89,6 +94,7 @@ public class GameController {
     public String edit(@PathVariable int id, Model model) {
         model.addAttribute("game", gameService.getById(id));
         model.addAttribute("tags", tagService.findAll());
+        model.addAttribute("tags", platformService.findAll());
         model.addAttribute("edit", true);
         return "games/create-edit";
     }
@@ -99,6 +105,7 @@ public class GameController {
 
         if (bindingResult.hasErrors()) {
             model.addAttribute("tags", tagService.findAll());
+            model.addAttribute("tags", platformService.findAll());
             return "games/create-edit";
         }
 
