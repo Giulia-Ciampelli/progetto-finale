@@ -21,9 +21,11 @@ public class SecurityConfig {
         http.authorizeRequests()
                 .requestMatchers("/games/create", "/games/edit/**").hasAuthority("ADMIN")
                 .requestMatchers(HttpMethod.POST, "/games/**").hasAuthority("ADMIN")
-                .requestMatchers("/games", "/games/**").hasAnyAuthority("USER", "ADMIN")
 
-                // TODO: aggiungi le altre pagine in seguito, o scleri come l'ultima volta
+                // TODO: aggiungi le altre pagine in seguito, o scleri come l'ultima volta (vuoi aggiungere anche piattaforme?)
+                .requestMatchers("/tags", "/tags/**").hasAuthority("ADMIN")
+                .requestMatchers("/sales", "/sales/**").hasAuthority("ADMIN")
+                .requestMatchers("/games", "/games/**").hasAnyAuthority("USER", "ADMIN")
                 .requestMatchers("/**").permitAll()
                 .and().formLogin()
                 .and().logout()

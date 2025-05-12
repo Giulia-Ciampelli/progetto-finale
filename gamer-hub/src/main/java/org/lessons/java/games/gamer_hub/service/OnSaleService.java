@@ -7,11 +7,12 @@ import org.lessons.java.games.gamer_hub.exception.IdNotFoundException;
 import org.lessons.java.games.gamer_hub.model.OnSale;
 import org.lessons.java.games.gamer_hub.repository.OnSaleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 @Service
 public class OnSaleService {
-    
+
     @Autowired
     private OnSaleRepository saleRepository;
 
@@ -31,7 +32,18 @@ public class OnSaleService {
         return saleAttempt.get();
     }
 
-    // TODO: solite ricerche personalizzate (per nome e data?)
+    // ricerche personalizzate
+    public List<OnSale> findSortedByStartDate() {
+        return saleRepository.findAll(Sort.by("startDate"));
+    }
+
+    public List<OnSale> findSortedByFinishDate() {
+        return saleRepository.findAll(Sort.by("finishDate"));
+    }
+
+    public List<OnSale> findByName(String name) {
+        return saleRepository.findByNameContainingIgnoreCase(name);
+    }
 
     // create
     public OnSale create(OnSale formSale) {
@@ -39,7 +51,7 @@ public class OnSaleService {
     }
 
     // update
-        public OnSale update(OnSale formSale) {
+    public OnSale update(OnSale formSale) {
         return saleRepository.save(formSale);
     }
 
