@@ -5,7 +5,9 @@ import java.util.Optional;
 
 import org.lessons.java.games.gamer_hub.exception.IdNotFoundException;
 import org.lessons.java.games.gamer_hub.model.Game;
+import org.lessons.java.games.gamer_hub.model.OnSale;
 import org.lessons.java.games.gamer_hub.repository.GameRepository;
+import org.lessons.java.games.gamer_hub.repository.OnSaleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +16,9 @@ public class GameService {
     
     @Autowired
     private GameRepository gameRepository;
+
+    @Autowired
+    private OnSaleRepository saleRepository;
 
     // index
     public List<Game> findAll() {
@@ -31,7 +36,10 @@ public class GameService {
         return gameAttempt.get();
     }
 
-    //TODO: ricerche personalizzate
+    // ricerche personalizzate
+    public List<Game> findByName(String name) {
+        return gameRepository.findByNameContainingIgnoreCase(name);
+    }
 
     // create
     public Game create(Game formGame) {
@@ -43,5 +51,22 @@ public class GameService {
         return gameRepository.save(formGame);
     }
 
-    // TODO: delete rispetto ad altre tabelle
+    // delete
+    public void deleteById(int id) {
+        Game game = getById(id);
+
+        for (OnSale saleToDelete : game.getSales()) {
+            saleRepository.delete(saleToDelete);
+        }
+
+        gameRepository.delete(game);
+    }
+
+    public void delete(Game game) {
+        for (OnSale saleToDelete : game.getSales()) {
+            saleRepository.delete(saleToDelete);
+        }
+
+        gameRepository.delete(game);
+    }
 }

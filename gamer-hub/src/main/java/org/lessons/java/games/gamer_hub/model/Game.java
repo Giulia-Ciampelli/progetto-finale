@@ -1,9 +1,15 @@
 package org.lessons.java.games.gamer_hub.model;
 
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
@@ -30,6 +36,10 @@ public class Game {
     @Min(value = 0, message = "The price cannot be negative.")
     private float price;
 
+    @OneToMany(mappedBy = "game", fetch = FetchType.EAGER)
+    @JsonManagedReference
+    private List<OnSale> sales;
+
     // #region getter e setter
     public int getId() {
         return id;
@@ -45,6 +55,10 @@ public class Game {
 
     public float getPrice() {
         return price;
+    }
+
+    public List<OnSale> getSales() {
+        return sales;
     }
 
     public void setId(int id) {
@@ -63,5 +77,13 @@ public class Game {
         this.price = price;
     }
 
+    public void setSales(List<OnSale> sales) {
+        this.sales = sales;
+    }
+
     // #endregion getter e setter
+    @Override
+    public String toString() {
+        return String.format("%s, %s, %.2f", this.name, this.description, this.price);
+    }
 }

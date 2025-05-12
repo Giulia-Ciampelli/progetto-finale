@@ -3,7 +3,9 @@ package org.lessons.java.games.gamer_hub.controller;
 import java.util.List;
 
 import org.lessons.java.games.gamer_hub.model.Game;
+import org.lessons.java.games.gamer_hub.model.OnSale;
 import org.lessons.java.games.gamer_hub.service.GameService;
+import org.lessons.java.games.gamer_hub.service.OnSaleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import jakarta.validation.Valid;
 
@@ -23,6 +26,9 @@ public class GameController {
 
     @Autowired
     private GameService gameService;
+
+    @Autowired
+    private OnSaleService saleService;
 
     // index
     @GetMapping
@@ -41,9 +47,15 @@ public class GameController {
         return "games/show";
     }
 
-    // TODO: aggiungi ricerca per nome, ricorda di mettere gli attributi anche per
-    // le altre tabelle
+    // TODO: ricorda di mettere gli attributi anche per le altre tabelle
     // #region ricerche personalizzate
+    @GetMapping("/search-by-name")
+    public String searchByName(@RequestParam(name = "name") String name, Model model) {
+        List<Game> games = gameService.findByName(name);
+        model.addAttribute("games", games);
+        return "games/index";
+    }
+
     // #endregion ricerche personalizzate
 
     // create
@@ -59,6 +71,7 @@ public class GameController {
         if (bindingResult.hasErrors()) {
             return "games/create-edit";
         }
+
         gameService.create(formGame);
         return "redirect:/games";
     }
@@ -77,9 +90,30 @@ public class GameController {
         if (bindingResult.hasErrors()) {
             return "games/create-edit";
         }
+
         gameService.create(formGame);
         return "redirect:/games";
     }
 
     // delete
+    @PostMapping("/delete/{id}")
+    public String delete(@PathVariable int id) {
+        Game game = gameService.getById(id);
+
+        for (OnSale saleToDelete : game.getSales()) {
+            saleService.delete(saleToDelete);
+        }
+
+        gameService.delete(game);
+        return "redirect:/games";
+    }
+
+    // show saldi
+    @GetMapping("/{id}/sale")
+    public String onSale(@PathVariable int id, Model model) {
+        OnSale sale = new OnSale();
+        sale.setGame(gameService.getById(id));
+        model.addAttribute("sale", sale);
+        return "sales/create-edit";
+    }
 }
