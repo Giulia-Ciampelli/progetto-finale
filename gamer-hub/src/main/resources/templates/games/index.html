@@ -1,11 +1,46 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <div th:replace="~{fragments/style :: head}"></div>
     <title>Games</title>
 </head>
+
 <body>
+
+    <!-- frammenti header e navbar -->
     <div th:replace="~{fragments/header :: header('Questa è la index games')}"></div>
     <div th:replace="~{fragments/navbar :: navbar}"></div>
+
+    <main>
+        <div class="row justify-content-center mx-0">
+
+            <!-- ricerca per nome -->
+
+            <!-- messaggio errore -->
+
+            <!-- bottone create -->
+
+            <!-- lista giochi -->
+            <div class="col-sm-12 col-md-4 m-2" th:each="game : ${games}" th:object="${game}"
+                th:if="${games.size() > 0}">
+                <div class="card align-items-center px-4 bg-card">
+                    <a th:href="|/games/*{id}|" class="text-decoration-none txt-primary">
+                        <p class="card-title">
+                            [[*{name}]]
+                        </p>
+                        <p class="card-text">
+                            [[*{price}]]€
+                        </p>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+
+    <!-- frammento footer -->
+    <div th:replace="~{fragments/footer :: footer}"></div>
 </body>
+
 </html>
