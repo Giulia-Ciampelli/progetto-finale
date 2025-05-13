@@ -17,21 +17,27 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarID">
-                    <div class="navbar-nav">
+                    <div sec:authorize="hasAnyAuthority('USER', 'ADMIN')" class="navbar-nav">
                         <a class="nav-link active txt-secondary" aria-current="page" th:href="@{/games}">Your games</a>
                     </div>
-                    <div class="navbar-nav">
+                    <div sec:authorize="hasAuthority('ADMIN')" class="navbar-nav">
                         <a class="nav-link active txt-secondary" aria-current="page" th:href="@{/tags}">Your tags</a>
                     </div>
-                    <div class="navbar-nav">
-                        <a class="nav-link active txt-secondary" aria-current="page" th:href="@{/platforms}">Your platforms</a>
+                    <div sec:authorize="hasAuthority('ADMIN')" class="navbar-nav">
+                        <a class="nav-link active txt-secondary" aria-current="page" th:href="@{/platforms}">Your
+                            platforms</a>
                     </div>
                 </div>
-                <div class="user-info" th:unless="${isHomePage}">
+                <div sec:authorize="isAuthenticated()" class="user-info">
                     Logged user: <span sec:authentication="name" class="fw-bold me-2 txt-success">
                     </span>
                     <a class="btn btn-sm bg-accent2" href="/logout">
-                        Sign out
+                        Logout
+                    </a>
+                </div>
+                <div sec:authorize="isAnonymous()" class="login">
+                    <a class="btn btn-sm bg-accent1" href="/login">
+                        Login
                     </a>
                 </div>
             </div>
@@ -40,5 +46,3 @@
 </body>
 
 </html>
-
-<!-- TODO: sistema visibilità dei link alla homepage, metti link per login -->
