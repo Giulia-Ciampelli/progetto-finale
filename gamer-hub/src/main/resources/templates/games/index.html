@@ -1,13 +1,11 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <div th:replace="~{fragments/style :: head}"></div>
     <title>Games</title>
 </head>
 <body>
-    <h1>
-        Questa è la index games
-    </h1>
+    <div th:replace="~{fragments/header :: header('Questa è la index games')}"></div>
+    <div th:replace="~{fragments/navbar :: navbar}"></div>
 </body>
 </html>

@@ -1,0 +1,60 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* palette di prova */
+:root {
+  --bg: #1C1B23;
+  --text-primary: #E8E6E3;
+  --text-secondary: #B5B3AD;
+  --accent: #7FBFFF;
+  --accent-2: #F6A3A3;
+  --success: #9FE2BF;
+  --warning: #E6B655;
+  --error: #D16060;
+  --card-bg: #26242F;
+  --divider: #3D3947;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text-primary);
+}
+
+.txt-primary {
+    color: var(--text-primary) !important;
+}
+
+.txt-secondary {
+    color: var(--text-secondary) !important;
+}
+
+.txt-success {
+    color: var(--success) !important;
+}
+
+.txt-warning {
+    color: var(--warning) !important;
+}
+
+.txt-error {
+    color: var(--error) !important;
+}
+
+.bg-accent1 {
+    background-color: var(--accent) !important;
+}
+
+.bg-accent2 {
+    background-color: var(--accent-2) !important;
+}
+
+.bg-card {
+    background-color: var(--card-bg) !important;
+}
+
+.bg-divider {
+    background-color: var(--divider) !important;
+}
