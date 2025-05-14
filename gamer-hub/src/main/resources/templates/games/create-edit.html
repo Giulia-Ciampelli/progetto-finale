@@ -1,13 +1,138 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Games, titolo variabile</title>
+    <div th:replace="~{fragments/style :: head}"></div>
+    <title th:text="${edit} ? 'Edit ' + ${game.name} : 'New game'"></title>
 </head>
+
 <body>
-    <h1>
-        Questa è la create-edit games
-    </h1>
+
+    <!-- frammenti header e navbar -->
+    <div th:replace="~{fragments/header :: header('Questa è la create-edit')}"></div>
+    <div th:replace="~{fragments/navbar :: navbar}"></div>
+
+    <main>
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <form th:action="${edit} ? @{/games/edit/{id}(id=${game.id})} : @{/games/create}" method="post"
+                        th:object="${game}">
+
+                        <!-- nome -->
+                        <div class="mb-3">
+                            <label for="name" class="form-label">
+                                Name:
+                            </label>
+                            <input type="text" class="form-control" id="name" th:field="*{name}"
+                                th:errorClass="${is-invalid}">
+
+                            <!-- segnalazione errore -->
+                            <div class="invalid-feedback" th:if="${#fields.hasErrors('name')}">
+                                <ul>
+                                    <li th:each="error : ${#fields.errors('name')}" th:text="${error}"></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- descrizione -->
+                        <div class="mb-3">
+                            <label for="description" class="form-label">
+                                Description:
+                            </label>
+                            <input type="text" class="form-control" id="description" th:field="*{description}"
+                                th:errorClass="is-invalid">
+
+                            <!-- segnalazione errore -->
+                            <div class="invalid-feedback" th:if="${#fields.hasErrors('description')}">
+                                <ul>
+                                    <li th:each="error : ${#fields.errors('description')}" th:text="${error}"></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- url immagine -->
+                        <div class="mb-3">
+                            <label for="img-url" class="form-label">
+                                Image URL:
+                            </label>
+                            <input type="text" class="form-control" id="img-url" th:field="*{url}"
+                                th:errorClass="is-invalid">
+
+                            <!-- segnalazione errore -->
+                            <div class="invalid-feedback" th:if="${#fields.hasErrors('url')}">
+                                <ul>
+                                    <li th:each="error : ${#fields.errors('url')}" th:text="${error}"></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- piattaforme -->
+                        <div class="mb-3">
+                            <div class="form-check single-platform" th:each="platform : ${platforms}">
+                                <input type="checkbox" th:field="${game.platforms}" th:value="${platform.id}"
+                                    th:id="|platform-${platform.id}|">
+                                <label th:for="|platform-${platform.id}|" class="form-check-label"
+                                    th:text="${platform.name}">
+                                </label>
+
+                                <!-- messaggio errore -->
+                                <div class="d-flex my-5 justify-content-center align-content-center"
+                                    th:if="${platform.isEmpty()}">
+                                    <h1>
+                                        There are no platforms yet
+                                    </h1>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- tags -->
+                        <div class="mb-3">
+                            <div class="form-check single-tag" th:each="tag : ${tags}">
+                                <input type="checkbox" th:field="${game.tags}" th:value="${tag.id}"
+                                    th:id="|tag-${tag.id}|">
+                                <label th:for="|tag-${tag.id}|" class="form-check-label" th:text="${tag.name}">
+                                </label>
+
+                                <!-- messaggio errore -->
+                                <div class="d-flex my-5 justify-content-center align-content-center"
+                                    th:if="${tag.isEmpty()}">
+                                    <h1>
+                                        There are no tags yet
+                                    </h1>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- prezzo -->
+                        <div class="mb-3">
+                            <label for="price" class="form-label">
+                                Price:
+                            </label>
+                            <input type="text" class="form-control" id="price" th:field="*{price}"
+                                th:errorClass="is-invalid">
+
+                            <!-- segnalazione errore -->
+                            <div class="invalid-feedback" th:if="${#fields.hasErrors('price')}">
+                                <ul>
+                                    <li th:each="error : ${#fields.errors('price')}" th:text="${error}"></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- bottoni -->
+                        <div class="mb-3 d-flex justify-content-between">
+                            <input type="submit" class="btn bg-success" value="Save">
+                            <input type="reset" class="btn bg-warning" value="Reset form">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- frammento footer -->
+    <div th:replace="~{fragments/footer :: footer}"></div>
 </body>
+
 </html>
