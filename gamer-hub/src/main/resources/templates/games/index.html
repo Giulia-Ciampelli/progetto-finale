@@ -14,15 +14,28 @@
 
     <main>
         <div class="container">
+            <div class="row">
+                <div class="d-flex justify-content-between align-items-center my-4">
 
+                    <!-- ricerca per nome -->
+                    <div class="d-flex flex-column">
+                        <form th:action="@{/games/search-by-name}" class="d-flex" method="get">
+                            <input type="text" class="form-control mx-3" id="name-search" name="name"
+                                placeholder="Search by name...">
+                            <input type="submit" class="btn bg-accent1" value="Search">
+                        </form>
+                    </div>
+
+                    <!-- bottone create -->
+                    <div>
+                        <a sec:authorize="hasAuthority('ADMIN')" class="btn bg-success" th:href="@{/games/create}">
+                            Add a game
+                        </a>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 g-4 justify-content-center mx-0">
-
-            <!-- ricerca per nome -->
-
-            <!-- messaggio errore -->
-
-            <!-- bottone create -->
 
             <!-- lista giochi -->
             <div class="col" th:each="game : ${games}" th:object="${game}" th:if="${games.size() > 0}">
@@ -39,6 +52,26 @@
                 </div>
             </div>
         </div>
+
+        <!-- #region errori -->
+        <div class="row flex-column">
+
+            <!-- messaggio errore -->
+            <div class="d-flex my-5 justify-content-center align-content-center" th:if="${games.isEmpty()}">
+                <h1>
+                    No games found
+                </h1>
+            </div>
+
+            <!-- messaggio errore db vuoto -->
+            <div class="d-flex my-5 justify-content-center align-content-center vh-100" th:unless="${games.size() > 0}">
+                <p class="fs-2">
+                    There are no games available at the moment.
+                </p>
+            </div>
+        </div>
+
+        <!-- #endregion errori -->
     </main>
 
     <!-- frammento footer -->
