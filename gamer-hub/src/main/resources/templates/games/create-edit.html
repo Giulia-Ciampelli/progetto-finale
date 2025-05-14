@@ -25,7 +25,7 @@
                                 Name:
                             </label>
                             <input type="text" class="form-control" id="name" th:field="*{name}"
-                                th:errorClass="${is-invalid}">
+                                th:errorclass="is-invalid">
 
                             <!-- segnalazione errore -->
                             <div class="invalid-feedback" th:if="${#fields.hasErrors('name')}">
@@ -41,7 +41,7 @@
                                 Description:
                             </label>
                             <input type="text" class="form-control" id="description" th:field="*{description}"
-                                th:errorClass="is-invalid">
+                                th:errorclass="is-invalid">
 
                             <!-- segnalazione errore -->
                             <div class="invalid-feedback" th:if="${#fields.hasErrors('description')}">
@@ -57,7 +57,7 @@
                                 Image URL:
                             </label>
                             <input type="text" class="form-control" id="img-url" th:field="*{url}"
-                                th:errorClass="is-invalid">
+                                th:errorclass="is-invalid">
 
                             <!-- segnalazione errore -->
                             <div class="invalid-feedback" th:if="${#fields.hasErrors('url')}">
@@ -110,7 +110,7 @@
                                 Price:
                             </label>
                             <input type="text" class="form-control" id="price" th:field="*{price}"
-                                th:errorClass="is-invalid">
+                                th:errorclass="is-invalid">
 
                             <!-- segnalazione errore -->
                             <div class="invalid-feedback" th:if="${#fields.hasErrors('price')}">
