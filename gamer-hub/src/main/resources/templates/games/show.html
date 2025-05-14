@@ -1,13 +1,100 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Games</title>
+    <div th:replace="~{fragments/style :: head}"></div>
+    <title th:text="${game.name}"></title>
 </head>
+
 <body>
-    <h1>
-        Questa è la show games
-    </h1>
+
+    <!-- frammenti header e navbar -->
+    <div th:replace="~{fragments/header :: header(${game.name})}"></div>
+    <div th:replace="~{fragments/navbar :: navbar}"></div>
+
+    <main>
+        <div class="row justify-content-center mx-0">
+            <div class="col-12" th:object="${game}">
+                <div class="card p-4 bg-card">
+                    <div class="row">                        
+                        <div class="col-md-6">
+                            <img class="img-fluid" th:src="*{url}" th:alt="*{name}">
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card-body">
+                                <p class="card-text txt-primary mt-4">
+                                    <strong>Description: </strong>[[*{description}]]
+                                </p>
+                                <p class="card-text txt-primary">
+                                    <strong>Price: </strong>[[*{price}]]€
+                                </p>
+            
+                                <!-- saldi -->
+                                <div class="card p-4 my-3 bg-accent1" th:object="${sale}" th:if="${game.getSales().size() > 0}">
+                                    <p class="card-title fw-bold txt-primary">
+                                        Active sales:
+                                    </p>
+                                    <div th:each="sale : ${sales}">
+                                        <p class="card-text txt-primary">
+                                            <strong>Title: </strong>[[${sale.title}]]
+                                        </p>
+                                        <p class="card-text txt-primary">
+                                            <strong>Starts: </strong>[[${sale.startDate}]]
+                                        </p>
+                                        <p class="card-text txt-primary">
+                                            <strong>Finishes: </strong>[[${sale.finishDate}]]
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="card p-4 my-3 bg-warning" th:unless="${game.getSales().size() > 0}">
+                                    <p class="card-title fw-bold">
+                                        No active sales at the moment
+                                    </p>
+                                </div>
+            
+                                <!-- piattaforme -->
+                                <div class="card p-4 my-3 bg-accent2" th:object="${platform}" th:if="${game.getPlatforms().size() > 0}">
+                                    <p class="card-title fw-bold txt-primary">
+                                        Platforms:
+                                    </p>
+                                    <div th:each="tag : ${tags}">
+                                        <p class="card-text txt-primary">
+                                            [[${platform.name}]]
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="card p-4 my-3 bg-warning" th:unless="${game.getPlatforms().size() > 0}">
+                                    <p class="card-title fw-bold">
+                                        No platforms
+                                    </p>
+                                </div>
+            
+                                <!-- tags -->
+                                <div class="card p-4 my-3 bg-accent2" th:object="${tag}" th:if="${game.getTags().size() > 0}">
+                                    <p class="card-title fw-bold txt-primary">
+                                        Tags:
+                                    </p>
+                                    <div th:each="tag : ${tags}">
+                                        <p class="card-text txt-primary">
+                                            [[${tag.name}]]
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="card p-4 my-3 bg-warning" th:unless="${game.getTags().size() > 0}">
+                                    <p class="card-title fw-bold">
+                                        No tags
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- frammento footer -->
+    <div th:replace="~{fragments/footer :: footer}"></div>
 </body>
+
 </html>

@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-GamerHubApplication<gamer-hub>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "org.lessons.java.games.gamer_hub.GamerHubApplication",
+            "projectName": "gamer-hub",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}

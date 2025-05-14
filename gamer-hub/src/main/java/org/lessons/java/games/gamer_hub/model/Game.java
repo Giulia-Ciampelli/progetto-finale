@@ -11,6 +11,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
+import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
@@ -34,6 +35,10 @@ public class Game {
     @NotBlank(message = "The description must contain at least one non-whitespace character.")
     @Size(min = 10, max = 255, message = "The description must be between 10 and 255 characters.")
     private String description;
+    
+    @NotBlank(message = "The url must contain at least one non-whitespace character")
+    @Lob
+    private String url;
 
     @NotNull(message = "The price field cannot be empty.")
     @Min(value = 0, message = "The price cannot be negative.")
@@ -64,6 +69,10 @@ public class Game {
         return description;
     }
 
+    public String getUrl() {
+        return url;
+    }
+
     public float getPrice() {
         return price;
     }
@@ -90,6 +99,10 @@ public class Game {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 
     public void setPrice(float price) {
