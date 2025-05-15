@@ -67,44 +67,47 @@
                             </div>
                         </div>
 
-                        <!-- piattaforme -->
-                        <div class="mb-3">
-                            <p>
-                                Platforms:
-                            </p>
-                            <div class="form-check single-platform" th:each="platform : ${platforms}">
-                                <input type="checkbox" th:field="${game.platforms}" th:value="${platform.id}"
-                                    th:id="|platform-${platform.id}|">
-                                <label th:for="|platform-${platform.id}|" class="form-check-label"
-                                    th:text="${platform.name}">
-                                </label>
-                            </div>
+                        <div class="d-flex flex-row">
 
-                            <!-- messaggio errore -->
-                            <div class="card p-2 my-4 bg-divider" th:if="${#lists.isEmpty(platforms)}">
-                                <p class="card-title fw-bold txt-warning">
-                                    There are no platforms yet
+                            <!-- piattaforme -->
+                            <div class="m-3">
+                                <p>
+                                    Platforms:
                                 </p>
-                            </div>
-                        </div>
+                                <div class="form-check single-platform" th:each="platform : ${platforms}">
+                                    <input type="checkbox" th:field="${game.platforms}" th:value="${platform.id}"
+                                        th:id="|platform-${platform.id}|">
+                                    <label th:for="|platform-${platform.id}|" class="form-check-label"
+                                        th:text="${platform.name}">
+                                    </label>
+                                </div>
 
-                        <!-- tags -->
-                        <div class="mb-3">
-                            <p>
-                                Tags:
-                            </p>
-                            <div class="form-check single-tag" th:each="tag : ${tags}">
-                                <input type="checkbox" th:field="${game.tags}" th:value="${tag.id}"
-                                    th:id="|tag-${tag.id}|">
-                                <label th:for="|tag-${tag.id}|" class="form-check-label" th:text="${tag.name}">
-                                </label>
+                                <!-- messaggio errore -->
+                                <div class="card p-2 my-4 bg-divider" th:if="${#lists.isEmpty(platforms)}">
+                                    <p class="card-title fw-bold txt-warning">
+                                        There are no platforms yet
+                                    </p>
+                                </div>
                             </div>
 
-                            <!-- messaggio errore -->
-                            <div class="card p-2 my-4 bg-divider" th:if="${#lists.isEmpty(tags)}">
-                                <p class="card-title fw-bold txt-warning">
-                                    There are no tags yet
+                            <!-- tags -->
+                            <div class="m-3">
+                                <p>
+                                    Tags:
                                 </p>
+                                <div class="form-check single-tag" th:each="tag : ${tags}">
+                                    <input type="checkbox" th:field="${game.tags}" th:value="${tag.id}"
+                                        th:id="|tag-${tag.id}|">
+                                    <label th:for="|tag-${tag.id}|" class="form-check-label" th:text="${tag.name}">
+                                    </label>
+                                </div>
+
+                                <!-- messaggio errore -->
+                                <div class="card p-2 my-4 bg-divider" th:if="${#lists.isEmpty(tags)}">
+                                    <p class="card-title fw-bold txt-warning">
+                                        There are no tags yet
+                                    </p>
+                                </div>
                             </div>
                         </div>
 
