@@ -9,7 +9,7 @@
 <body>
 
     <!-- frammenti header e navbar -->
-    <div th:replace="~{fragments/header :: header('Questa è la index games')}"></div>
+    <div th:replace="~{fragments/header :: header('Here are your games')}"></div>
     <div th:replace="~{fragments/navbar :: navbar}"></div>
 
     <main>
@@ -52,11 +52,11 @@
                     
                     <!-- bottoni edit e delete -->
                     <div sec:authorize="hasAuthority('ADMIN')" class="d-flex pb-3 w-100 justify-content-evenly">
-                        <a th:href="@{/games/edit/{id}(id=${game.id})}" class="btn bg-divider">
+                        <a th:href="@{/games/edit/{id}(id=${game.id})}" class="btn bg-divider txt-primary">
                             Edit
                         </a>
 
-                        <a th:href="@{/games/{id}/sale(id=${game.id})}" class="btn bg-success txt-primary">
+                        <a th:href="@{/games/{id}/sale(id=${game.id})}" class="btn bg-success">
                             On sale
                         </a>
 
@@ -70,13 +70,13 @@
                         <div class="modal fade" th:id="delete-modal- + ${game.id}" tabindex="-1"
                             aria-labelledby="delete-modal-" aria-hidden="true">
                             <div class="modal-dialog modal-dialog modal-dialog-centered">
-                                <div class="modal-content">
+                            <div class="modal-content bg-card">
                                     <div class="modal-header">
-                                        <h1 class="modal-title fs-5" id="exampleModalLabel">
+                                        <h1 class="modal-title fs-5 txt-primary" id="exampleModalLabel">
                                             Delete "[[${game.name}]]"
                                         </h1>
                                     </div>
-                                    <div class="modal-body">
+                                    <div class="modal-body txt-primary">
                                         This game will be permanently deleted. Are you sure you want to proceed?
                                     </div>
                                     <div class="modal-footer">
@@ -115,7 +115,7 @@
             </div>
 
             <!-- messaggio errore db vuoto -->
-            <div class="d-flex my-5 justify-content-center align-content-center vh-100" th:unless="${games.size() > 0}">
+            <div class="d-flex my-5 justify-content-center align-content-center" th:unless="${games.size() > 0}">
                 <p class="fs-2">
                     There are no games available at the moment.
                 </p>
@@ -127,6 +127,9 @@
 
     <!-- frammento footer -->
     <div th:replace="~{fragments/footer :: footer}"></div>
+
+    <!-- scripts -->
+    <div th:replace="~{fragments/style :: scripts}"></div>
 </body>
 
 </html>

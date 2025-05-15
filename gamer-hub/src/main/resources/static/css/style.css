@@ -6,21 +6,33 @@
 
 /* palette di prova */
 :root {
-  --bg: #1C1B23;
-  --text-primary: #E8E6E3;
-  --text-secondary: #B5B3AD;
-  --accent: #7FBFFF;
-  --accent-2: #F6A3A3;
-  --success: #9FE2BF;
-  --warning: #E6B655;
-  --error: #D16060;
-  --card-bg: #26242F;
-  --divider: #3D3947;
+    --bg: #1C1B23;
+    --text-primary: #E8E6E3;
+    --text-secondary: #B5B3AD;
+    --accent: #7FBFFF;
+    --accent-2: #F6A3A3;
+    --success: #9FE2BF;
+    --warning: #E6B655;
+    --error: #D16060;
+    --card-bg: #26242F;
+    --divider: #3D3947;
+}
+
+html {
+    height: 100%;
 }
 
 body {
-  background-color: var(--bg);
-  color: var(--text-primary);
+    background-color: var(--bg);
+    color: var(--text-primary);
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+  flex: 1;
 }
 
 /* #region colori */

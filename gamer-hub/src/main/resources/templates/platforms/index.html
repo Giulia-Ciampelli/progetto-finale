@@ -1,13 +1,127 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <div th:replace="~{fragments/style :: head}"></div>
     <title>Platforms</title>
 </head>
+
 <body>
-    <h1>
-        Questa è la index platforms
-    </h1>
+
+    <!-- frammenti header e navbar -->
+    <div th:replace="~{fragments/header :: header('Here are your platforms')}"></div>
+    <div th:replace="~{fragments/navbar :: navbar}"></div>
+
+    <main>
+        <div class="container">
+            <div class="row">
+                <div class="d-flex justify-content-between align-items-center my-4">
+
+                    <!-- ricerca per nome -->
+                    <div class="d-flex flex-column">
+                        <form th:action="@{/platforms/search-by-name}" class="d-flex" method="get">
+                            <input type="text" class="form-control mx-3" id="name-search" name="name"
+                                placeholder="Search by name...">
+                            <input type="submit" class="btn bg-accent1" value="Search">
+                        </form>
+                    </div>
+
+                    <!-- bottone create -->
+                    <div>
+                        <a sec:authorize="hasAuthority('ADMIN')" class="btn bg-success" th:href="@{/platforms/create}">
+                            Add a platform
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 g-4 justify-content-center mx-0">
+
+            <!-- lista piattaforme -->
+            <div class="col" th:each="platform : ${platforms}" th:object="${platform}" th:if="${platforms.size() > 0}">
+                <div class="card align-items-center px-4 bg-card">
+                    <a th:href="|/platforms/*{id}|" class="text-decoration-none txt-primary">
+                        <p class="card-title fw-bold py-2">
+                            [[*{name}]]
+                        </p>
+                    </a>
+                    
+                    <!-- bottoni edit e delete -->
+                    <div sec:authorize="hasAuthority('ADMIN')" class="d-flex pb-3 w-100 justify-content-evenly">
+                        <a th:href="@{/platforms/edit/{id}(id=${platform.id})}" class="btn bg-divider txt-primary">
+                            Edit
+                        </a>
+
+                        <!-- bottone con modale -->
+                        <button sec:authorize="hasAuthority('ADMIN')" type="button" class="btn bg-error" data-bs-toggle="modal"
+                            th:data-bs-target="'#delete-modal-' + ${platform.id}">
+                            Delete
+                        </button>
+
+                        <!-- modale di bootstrap -->
+                        <div class="modal fade" th:id="delete-modal- + ${platform.id}" tabindex="-1"
+                            aria-labelledby="delete-modal-" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog modal-dialog-centered">
+                            <div class="modal-content bg-card">
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5 txt-primary" id="exampleModalLabel">
+                                            Delete "[[${platform.name}]]"
+                                        </h1>
+                                    </div>
+                                    <div class="modal-body txt-primary">
+                                        This platform will be permanently deleted. Are you sure you want to proceed?
+                                    </div>
+                                    <div class="modal-footer">
+
+                                        <!-- vero bottone di cancellazione -->
+                                        <form class="d-inline-block" th:action="@{/platforms/delete/{id}(id=${platform.id})}"
+                                            method="post">
+                                            <button type="submit" class="btn bg-error">
+                                                Delete
+                                            </button>
+                                        </form>
+
+                                        <!-- bottone che fa uscire dalla modale -->
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                            <span aria-hidden="true">
+                                                Close
+                                            </span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- #region errori -->
+        <div class="row flex-column">
+
+            <!-- messaggio errore -->
+            <div class="d-flex my-5 justify-content-center align-content-center" th:if="${platforms.isEmpty()}">
+                <h1>
+                    No platforms found
+                </h1>
+            </div>
+
+            <!-- messaggio errore db vuoto -->
+            <div class="d-flex my-5 justify-content-center align-content-center" th:unless="${platforms.size() > 0}">
+                <p class="fs-2">
+                    There are no platforms available at the moment.
+                </p>
+            </div>
+        </div>
+
+        <!-- #endregion errori -->
+    </main>
+
+    <!-- frammento footer -->
+    <div th:replace="~{fragments/footer :: footer}"></div>
+
+    <!-- scripts -->
+    <div th:replace="~{fragments/style :: scripts}"></div>
 </body>
+
 </html>

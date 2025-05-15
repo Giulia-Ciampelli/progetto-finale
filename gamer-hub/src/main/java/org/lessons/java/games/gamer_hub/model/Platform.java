@@ -23,7 +23,7 @@ public class Platform {
     private int id;
 
     @NotBlank(message = "The name cannot be empty.")
-    @Size(min = 3, message = "The name must be at least 3 characters long.")
+    @Size(min = 2, message = "The name must be at least 2 characters long.")
     private String name;
 
     @ManyToMany(mappedBy = "platforms", fetch = FetchType.EAGER)

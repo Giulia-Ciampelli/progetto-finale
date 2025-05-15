@@ -1,13 +1,52 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tags, titolo variabile</title>
+    <div th:replace="~{fragments/style :: head}"></div>
+    <title>New tag</title>
 </head>
+
 <body>
-    <h1>
-        Questa è la create-edit tags
-    </h1>
+
+    <!-- frammenti header e navbar -->
+    <div th:replace="~{fragments/header :: header('Add a new tag')}"></div>
+    <div th:replace="~{fragments/navbar :: navbar}"></div>
+
+    <main>
+        <div class="container">
+            <div class="row">
+                <div class="col my-5">
+                    <form id="tags-form" th:action="${edit} ? @{/tags/edit/{id}(id=${tag.id})} : @{/tags/create}"
+                        method="post" th:object="${tag}">
+
+                        <!-- titolo -->
+                        <div class="mb-3">
+                            <label for="name" class="form-label">
+                                Name:
+                            </label>
+                            <input type="text" class="form-control" id="name" th:field="*{name}" th:errorclass="is-invalid">
+
+                            <!-- segnalazione errore -->
+                            <div class="invalid-feedback" th:if="${#fields.hasErrors('name')}">
+                                <ul>
+                                    <li th:each="error : ${#fields.errors('name')}" th:text="${error}"></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- bottoni di invio o reset -->
+                        <div class="mb-3 d-flex justify-content-between">
+                            <input type="submit" class="btn bg-success" value="Save">
+                            <input type="reset" class="btn bg-warning" value="Reset form">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- frammento footer -->
+    <div th:replace="~{fragments/footer :: footer}"></div>
 </body>
+
 </html>
