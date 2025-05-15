@@ -69,6 +69,9 @@
 
                         <!-- piattaforme -->
                         <div class="mb-3">
+                            <p>
+                                Platforms:
+                            </p>
                             <div class="form-check single-platform" th:each="platform : ${platforms}">
                                 <input type="checkbox" th:field="${game.platforms}" th:value="${platform.id}"
                                     th:id="|platform-${platform.id}|">
@@ -87,6 +90,9 @@
 
                         <!-- tags -->
                         <div class="mb-3">
+                            <p>
+                                Tags:
+                            </p>
                             <div class="form-check single-tag" th:each="tag : ${tags}">
                                 <input type="checkbox" th:field="${game.tags}" th:value="${tag.id}"
                                     th:id="|tag-${tag.id}|">

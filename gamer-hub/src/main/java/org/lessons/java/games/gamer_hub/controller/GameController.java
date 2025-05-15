@@ -72,7 +72,7 @@ public class GameController {
     public String create(Model model) {
         model.addAttribute("game", new Game());
         model.addAttribute("tags", tagService.findAll());
-        model.addAttribute("tags", platformService.findAll());
+        model.addAttribute("platforms", platformService.findAll());
         return "games/create-edit";
     }
 
@@ -81,7 +81,7 @@ public class GameController {
 
         if (bindingResult.hasErrors()) {
             model.addAttribute("tags", tagService.findAll());
-            model.addAttribute("tags", platformService.findAll());
+            model.addAttribute("platforms", platformService.findAll());
             return "games/create-edit";
         }
 
@@ -94,7 +94,7 @@ public class GameController {
     public String edit(@PathVariable int id, Model model) {
         model.addAttribute("game", gameService.getById(id));
         model.addAttribute("tags", tagService.findAll());
-        model.addAttribute("tags", platformService.findAll());
+        model.addAttribute("platforms", platformService.findAll());
         model.addAttribute("edit", true);
         return "games/create-edit";
     }
@@ -105,7 +105,7 @@ public class GameController {
 
         if (bindingResult.hasErrors()) {
             model.addAttribute("tags", tagService.findAll());
-            model.addAttribute("tags", platformService.findAll());
+            model.addAttribute("platforms", platformService.findAll());
             return "games/create-edit";
         }
 
