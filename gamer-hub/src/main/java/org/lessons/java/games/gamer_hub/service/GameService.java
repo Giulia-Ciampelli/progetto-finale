@@ -36,6 +36,11 @@ public class GameService {
         return gameAttempt.get();
     }
 
+    // show per rest controller
+    public Optional<Game> findById(int id) {
+        return gameRepository.findById(id);
+    }
+
     // ricerche personalizzate
     public List<Game> findByName(String name) {
         return gameRepository.findByNameContainingIgnoreCase(name);

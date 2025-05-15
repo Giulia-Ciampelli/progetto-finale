@@ -12,8 +12,55 @@
     <div th:replace="~{fragments/header :: header('Questa è la home')}"></div>
     <div th:replace="~{fragments/navbar :: navbar}"></div>
 
+    <main>
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <h2 class="my-4">
+                        🎮 Welcome to GameHub
+                    </h2>
+                    <h4 class="my-4">
+                        Your one-stop platform for organizing, managing, and enriching your video game library — whether
+                        you're a casual gamer or an admin with curatorial powers.
+                    </h4>
+                    <div sec:authorize="hasAuthority('USER')">
+                        <h3 class="my-4">
+                            👤 For Users
+                        </h3>
+                        <p class="fs-5 my-4">
+                            GameHub is your personal gaming shelf in digital form. Here’s what you can do: <br>
+                            - Browse your game library at a glance with clean visuals and categorized views. <br>
+                            - View detailed information about each game, including description, image, platforms, and
+                            tags. <br>
+                            - Filter by name, so you can find the right game for your mood. <br>
+                            No clutter, no confusion — just your games, exactly how you want them.
+                        </p>
+                    </div>
+                    <div sec:authorize="hasAuthority('ADMIN')">
+                        <h3 class="my-4">
+                            🛠️ For Admins
+                        </h3>
+                        <p class="fs-5 my-4">
+                            As an admin, you hold the keys to the vault. You’re responsible for keeping the database
+                            clean, complete, and useful. Here’s what you can do: <br>
+                            - Create new games, complete with images, descriptions, platform lists, tags, and pricing
+                            info. <br>
+                            - Edit existing games to keep details up-to-date or refine game metadata. <br>
+                            - Delete games that are no longer relevant or mistakenly added. <br>
+                            - Manage tags and platforms used across the site. <br>
+                            Your role ensures the platform stays curated, flexible, and ready to scale with your growing
+                            collection.
+                        </p>
+                    </div>
+                    <h4 class="my-4">
+                        GameHub adapts to your needs — from collecting and cataloging to administrating and updating.
+                        Dive in and take control of your game universe.
+                    </h4>
+                </div>
+            </div>
+        </div>
+    </main>
 
-    
     <!-- frammento footer -->
     <div th:replace="~{fragments/footer :: footer}"></div>
 </body>
