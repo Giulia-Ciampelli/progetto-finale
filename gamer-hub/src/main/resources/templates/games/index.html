@@ -49,6 +49,57 @@
                             <strong>Price: </strong>[[*{price}]]€
                         </p>
                     </a>
+                    
+                    <!-- bottoni edit e delete -->
+                    <div sec:authorize="hasAuthority('ADMIN')" class="d-flex pb-3 w-100 justify-content-evenly">
+                        <a th:href="@{/games/edit/{id}(id=${game.id})}" class="btn bg-divider">
+                            Edit
+                        </a>
+
+                        <a th:href="@{/games/{id}/sale(id=${game.id})}" class="btn bg-success txt-primary">
+                            On sale
+                        </a>
+
+                        <!-- bottone con modale -->
+                        <button sec:authorize="hasAuthority('ADMIN')" type="button" class="btn bg-error" data-bs-toggle="modal"
+                            th:data-bs-target="'#delete-modal-' + ${game.id}">
+                            Delete
+                        </button>
+
+                        <!-- modale di bootstrap -->
+                        <div class="modal fade" th:id="delete-modal- + ${game.id}" tabindex="-1"
+                            aria-labelledby="delete-modal-" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="exampleModalLabel">
+                                            Delete "[[${game.name}]]"
+                                        </h1>
+                                    </div>
+                                    <div class="modal-body">
+                                        This game will be permanently deleted. Are you sure you want to proceed?
+                                    </div>
+                                    <div class="modal-footer">
+
+                                        <!-- vero bottone di cancellazione -->
+                                        <form class="d-inline-block" th:action="@{/games/delete/{id}(id=${game.id})}"
+                                            method="post">
+                                            <button type="submit" class="btn bg-error">
+                                                Delete
+                                            </button>
+                                        </form>
+
+                                        <!-- bottone che fa uscire dalla modale -->
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                            <span aria-hidden="true">
+                                                Close
+                                            </span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

@@ -22,7 +22,7 @@ public class OnSaleController {
     private OnSaleService saleService;
 
     // create
-    @GetMapping("/create")
+    @PostMapping("/create")
     public String store(@Valid @ModelAttribute("sale") OnSale formSale, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
             return "sales/create-edit";

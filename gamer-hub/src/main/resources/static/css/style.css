@@ -60,6 +60,10 @@ body {
     background-color: var(--warning) !important;
 }
 
+.bg-error {
+    background-color: var(--error) !important;
+}
+
 .bg-card {
     background-color: var(--card-bg) !important;
 }
