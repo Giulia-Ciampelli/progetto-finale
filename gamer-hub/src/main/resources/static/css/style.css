@@ -56,6 +56,10 @@ main {
     color: var(--error) !important;
 }
 
+.bg {
+    background-color: var(--bg) !important;
+}
+
 .bg-accent1 {
     background-color: var(--accent) !important;
 }

@@ -54,6 +54,7 @@ public class GameController {
         model.addAttribute("game", game);
         model.addAttribute("sales", game.getSales());
         model.addAttribute("tags", game.getTags());
+        model.addAttribute("platforms", game.getPlatforms());
         return "games/show";
     }
 

@@ -30,7 +30,7 @@
                                 </p>
             
                                 <!-- saldi -->
-                                <div class="card p-4 my-3 bg-accent1" th:object="${sale}" th:if="${game.getSales().size() > 0}">
+                                <div class="card p-4 my-3 bg-accent1" th:if="${game.getSales().size() > 0}">
                                     <p class="card-title fw-bold txt-primary">
                                         Active sales:
                                     </p>
@@ -53,11 +53,11 @@
                                 </div>
             
                                 <!-- piattaforme -->
-                                <div class="card p-4 my-3 bg-accent2" th:object="${platform}" th:if="${game.getPlatforms().size() > 0}">
+                                <div class="card p-4 my-3 bg" th:if="${game.getPlatforms().size() > 0}">
                                     <p class="card-title fw-bold txt-primary">
                                         Platforms:
                                     </p>
-                                    <div th:each="tag : ${tags}">
+                                    <div th:each="platform: ${platforms}">
                                         <p class="card-text txt-primary">
                                             [[${platform.name}]]
                                         </p>
@@ -70,7 +70,7 @@
                                 </div>
             
                                 <!-- tags -->
-                                <div class="card p-4 my-3 bg-accent2" th:object="${tag}" th:if="${game.getTags().size() > 0}">
+                                <div class="card p-4 my-3 bg" th:if="${game.getTags().size() > 0}">
                                     <p class="card-title fw-bold txt-primary">
                                         Tags:
                                     </p>

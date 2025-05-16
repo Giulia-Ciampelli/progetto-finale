@@ -1,7 +1,6 @@
 package org.lessons.java.games.gamer_hub.model;
 
-import java.time.LocalDateTime;
-
+import java.time.LocalDate;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import jakarta.persistence.Entity;
@@ -30,11 +29,11 @@ public class OnSale {
 
     @NotNull(message = "The sale start date cannot be empty.")
     @FutureOrPresent(message = "The sale start date cannot be in the past.")
-    private LocalDateTime startDate;
+    private LocalDate startDate;
 
     @NotNull(message = "The sale finish date cannot be empty.")
     @FutureOrPresent(message = "The sale finish date cannot be in the past.")
-    private LocalDateTime finishDate;
+    private LocalDate finishDate;
 
     @ManyToOne
     @JoinColumn(name = "game_id", nullable = false)
@@ -50,11 +49,11 @@ public class OnSale {
         return title;
     }
 
-    public LocalDateTime getStartDate() {
+    public LocalDate getStartDate() {
         return startDate;
     }
 
-    public LocalDateTime getFinishDate() {
+    public LocalDate getFinishDate() {
         return finishDate;
     }
 
@@ -70,11 +69,11 @@ public class OnSale {
         this.title = title;
     }
 
-    public void setStartDate(LocalDateTime startDate) {
+    public void setStartDate(LocalDate startDate) {
         this.startDate = startDate;
     }
 
-    public void setFinishDate(LocalDateTime finishDate) {
+    public void setFinishDate(LocalDate finishDate) {
         this.finishDate = finishDate;
     }
 

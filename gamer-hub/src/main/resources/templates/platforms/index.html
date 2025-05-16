@@ -35,11 +35,11 @@
                 </div>
             </div>
         </div>
-        <div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 g-4 justify-content-center mx-0">
+        <div class="row mx-0">
 
             <!-- lista piattaforme -->
-            <div class="col" th:each="platform : ${platforms}" th:object="${platform}" th:if="${platforms.size() > 0}">
-                <div class="card align-items-center px-4 bg-card">
+            <div class="col-12" th:each="platform : ${platforms}" th:object="${platform}" th:if="${platforms.size() > 0}">
+                <div class="card flex-row align-items-center px-4 py-3 my-2 bg-card" style="width: fit-content;">
                     <a th:href="|/platforms/*{id}|" class="text-decoration-none txt-primary">
                         <p class="card-title fw-bold py-2">
                             [[*{name}]]
@@ -47,8 +47,8 @@
                     </a>
                     
                     <!-- bottoni edit e delete -->
-                    <div sec:authorize="hasAuthority('ADMIN')" class="d-flex pb-3 w-100 justify-content-evenly">
-                        <a th:href="@{/platforms/edit/{id}(id=${platform.id})}" class="btn bg-divider txt-primary">
+                    <div sec:authorize="hasAuthority('ADMIN')" class="d-flex justify-content-end">
+                        <a th:href="@{/platforms/edit/{id}(id=${platform.id})}" class="btn bg-divider txt-primary mx-3">
                             Edit
                         </a>
 
