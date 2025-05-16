@@ -8,16 +8,22 @@ import org.lessons.java.games.gamer_hub.service.GameService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
+// import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+// import org.springframework.web.bind.annotation.PostMapping;
+// import org.springframework.web.bind.annotation.PutMapping;
+// import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+// import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/api/games")
 public class GameRestController {
 
-    // TODO: fai pagina login, finisci rest controller, sistema layout index di tag e piattaforme
+    // TODO: fai pagina login, sistema layout index di tag e piattaforme
     
     @Autowired
     private GameService gameService;
@@ -41,9 +47,35 @@ public class GameRestController {
         return new ResponseEntity<Game>(gameAttempt.get(), HttpStatusCode.valueOf(200));
     }
 
-    // create
+    // // create
+    // @PostMapping
+    // public ResponseEntity<Game> store(@Valid @RequestBody Game game) {
+    //     return new ResponseEntity<Game>(gameService.create(game), HttpStatusCode.valueOf(201));
+    // }
 
-    // edit
+    // // edit
+    // @PutMapping("/{id}")
+    // public ResponseEntity<Game> update(@PathVariable int id, @Valid @RequestBody Game game) {
+    //     Optional<Game> gameAttempt = gameService.findById(id);
 
-    // delete
+    //     if (gameAttempt.isEmpty()) {
+    //         return new ResponseEntity<Game>(HttpStatusCode.valueOf(404));
+    //     }
+
+    //     game.setId(id);
+    //     return new ResponseEntity<Game>(gameService.update(game), HttpStatusCode.valueOf(201));
+    // }
+
+    // // delete
+    // @DeleteMapping("/{id}")
+    // public ResponseEntity<Game> delete(@Valid @PathVariable int id) {
+    //     Optional<Game> gameAttempt = gameService.findById(id);
+
+    //     if (gameAttempt.isEmpty()) {
+    //         return new ResponseEntity<Game>(HttpStatusCode.valueOf(404));
+    //     }
+
+    //     gameService.deleteById(id);
+    //     return new ResponseEntity<>(HttpStatusCode.valueOf(204));
+    // }
 }
