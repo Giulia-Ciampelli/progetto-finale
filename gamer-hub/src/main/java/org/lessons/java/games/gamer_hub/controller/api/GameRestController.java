@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/games")
 public class GameRestController {
 
-    // TODO: fai pagina login
+    // TODO: fai pagina login, metti tag e platform in ordine alfabetico
     
     @Autowired
     private GameService gameService;
