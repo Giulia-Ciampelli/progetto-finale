@@ -24,7 +24,7 @@ public class SecurityConfig {
                 .requestMatchers("/tags", "/tags/**").hasAuthority("ADMIN")
                 .requestMatchers("/platforms", "/platforms/**").hasAuthority("ADMIN")
                 .requestMatchers("/sales", "/sales/**").hasAuthority("ADMIN")
-                .requestMatchers("/games", "/games/**").hasAnyAuthority("USER", "ADMIN")
+                .requestMatchers("/games", "/games/**").hasAuthority("ADMIN")
                 .requestMatchers("/**").permitAll()
                 .and().formLogin()
                 .loginPage("/login")
