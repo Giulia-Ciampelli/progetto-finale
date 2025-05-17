@@ -8,6 +8,7 @@ import org.lessons.java.games.gamer_hub.model.Game;
 import org.lessons.java.games.gamer_hub.model.Tag;
 import org.lessons.java.games.gamer_hub.repository.TagRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -18,7 +19,7 @@ public class TagService {
 
     // index
     public List<Tag> findAll() {
-        return tagRepository.findAll();
+        return tagRepository.findAll(Sort.by(Sort.Order.asc("name")));
     }
 
     // show

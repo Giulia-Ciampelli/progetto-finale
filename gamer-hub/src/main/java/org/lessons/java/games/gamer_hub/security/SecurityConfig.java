@@ -27,7 +27,10 @@ public class SecurityConfig {
                 .requestMatchers("/games", "/games/**").hasAnyAuthority("USER", "ADMIN")
                 .requestMatchers("/**").permitAll()
                 .and().formLogin()
+                .loginPage("/login")
+                .loginProcessingUrl("/login")
                 .and().logout()
+                .logoutSuccessUrl("/")
                 .and().exceptionHandling()
                 .and().csrf().disable();
 

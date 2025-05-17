@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <div th:replace="~{fragments/style :: head}"></div>
+    <title>Login</title>
+</head>
+
+<body>
+
+    <!-- frammenti header e navbar -->
+    <div th:replace="~{fragments/header :: header('Login')}"></div>
+    <div th:replace="~{fragments/navbar :: navbar}"></div>
+
+    <main>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-8 my-5">
+                    <form id="tags-form" th:action="@{/login}" method="post">
+
+                        <!-- username -->
+                        <div class="mb-3">
+                            <label for="username" class="form-label">
+                                Username:
+                            </label>
+                            <input type="text" class="form-control" id="username" name="username">
+                        </div>
+
+                        <!-- username -->
+                        <div class="mb-3">
+                            <label for="password" class="form-label">
+                                Password:
+                            </label>
+                            <input type="password" class="form-control" id="password" name="password">
+                        </div>
+
+                        <!-- messaggio errore -->
+                        <div class="rounded bg-error py-1 px-2 my-3" style="width: fit-content;">
+                            <p th:if="${loginError}" class="txt-primary my-0">
+                                Wrong user or password
+                            </p>
+                        </div>
+
+                        <!-- bottone login -->
+                        <div class="mb-3 d-flex justify-content-between">
+                            <input type="submit" class="btn bg-success" value="Login">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- frammento footer -->
+    <div th:replace="~{fragments/footer :: footer}"></div>
+</body>
+
+</html>

@@ -8,6 +8,7 @@ import org.lessons.java.games.gamer_hub.model.Game;
 import org.lessons.java.games.gamer_hub.model.Platform;
 import org.lessons.java.games.gamer_hub.repository.PlatformRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -18,7 +19,7 @@ public class PlatformService {
 
     // index
     public List<Platform> findAll() {
-        return platformRepository.findAll();
+        return platformRepository.findAll(Sort.by(Sort.Order.asc("name")));
     }
 
     // show
