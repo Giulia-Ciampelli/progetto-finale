@@ -22,8 +22,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/games")
 public class GameRestController {
-
-    // TODO: fai pagina login
     
     @Autowired
     private GameService gameService;
