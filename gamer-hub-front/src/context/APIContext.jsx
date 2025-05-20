@@ -3,7 +3,7 @@ const APIContext = createContext();
 
 export const APIContextProvider = ({ children }) => {
     const [games, setGames] = useState([]); // variabile index
-    const [gameDetails, setGameDetails] = useState([]); // variabile show
+    const [gameDetails, setGameDetails] = useState(null); // variabile show
     const url = "http://127.0.0.1:8080/api/games";
     const [loading, setLoading] = useState(false); // variabile loader
 
