@@ -1,21 +1,36 @@
 // #region importazioni
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 // layout
+import DefaultLayout from './pages/DefaultLayout.jsx';
 
 // pagine
+import Home from './pages/Home.jsx';
+import GameList from './pages/GameList.jsx';
+import GameDetails from './pages/GameDetails.jsx';
 
 // global context
+import { APIContextProvider } from './context/APIContext.jsx';
 
 // stile
-import './App.css'
+import './App.css';
 
 // #endregion importazioni
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
     <>
+      <APIContextProvider>
+        <BrowserRouter>
+          <Routes>
+            <Route element={<DefaultLayout />}>
+              <Route path="/" element={<Home />} />
+              <Route path="/games" element={<GameList />} />
+              <Route path="/games/:id" element={<GameDetails />} />
+            </Route>
+          </Routes>
+        </BrowserRouter>
+      </APIContextProvider>
     </>
   )
 }
