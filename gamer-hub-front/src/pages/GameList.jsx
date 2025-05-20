@@ -7,8 +7,12 @@ import APIContext from "../context/APIContext.jsx";
 // componenti
 import Loader from "../components/Loader.jsx";
 
+// custom hooks
+import usePageTitle from "../hooks/PageTitle.jsx";
+
 export default function GameList() {
     const { games, loading } = useContext(APIContext);
+    usePageTitle("GamerHub - Games");
 
     return (
         <>

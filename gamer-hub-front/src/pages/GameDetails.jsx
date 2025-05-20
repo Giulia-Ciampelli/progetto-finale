@@ -7,6 +7,9 @@ import APIContext from "../context/APIContext.jsx";
 // componenti
 import Loader from "../components/Loader.jsx";
 
+// custom hook
+import usePageTitle from "../hooks/PageTitle.jsx";
+
 export default function GameDetails() {
     const { gameDetails, fetchGameById, loading } = useContext(APIContext);
     const { id } = useParams();
@@ -19,6 +22,8 @@ export default function GameDetails() {
             fetchGameById(numericId);
         }
     }, [numericId, gameDetails]);
+
+    usePageTitle(gameDetails?.name ? `GamerHub - ${gameDetails.name}` : "Loading...");
 
     if (loading) {
         return <Loader />;
@@ -94,7 +99,7 @@ export default function GameDetails() {
                                     No platforms available yet
                                 </p>
                             )}
-                            
+
                         {/* sezione tags */}
                         {gameDetails.tags?.length > 0 ?
                             (

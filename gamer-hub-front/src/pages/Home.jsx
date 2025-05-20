@@ -1,4 +1,9 @@
+// custom hooks
+import usePageTitle from "../hooks/PageTitle.jsx";
+
 export default function Home() {
+    usePageTitle("GamerHub - Home");
+
     return (
         <>
             <div className="col">
