@@ -9,7 +9,7 @@
 <body>
 
     <!-- frammenti header e navbar -->
-    <div th:replace="~{fragments/header :: header('Add a new platform')}"></div>
+    <div th:replace="~{fragments/header :: header(${edit} ? 'Edit a platform' : 'Add a new platform')}"></div>
     <div th:replace="~{fragments/navbar :: navbar}"></div>
 
     <main>

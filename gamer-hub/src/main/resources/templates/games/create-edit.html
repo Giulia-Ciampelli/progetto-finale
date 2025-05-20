@@ -9,7 +9,7 @@
 <body>
 
     <!-- frammenti header e navbar -->
-    <div th:replace="~{fragments/header :: header('Questa è la create-edit')}"></div>
+    <div th:replace="~{fragments/header :: header(${edit} ? 'Edit a game' : 'New game')}"></div>
     <div th:replace="~{fragments/navbar :: navbar}"></div>
 
     <main>

@@ -9,7 +9,7 @@
 <body>
 
     <!-- frammenti header e navbar -->
-    <div th:replace="~{fragments/header :: header('Add a new tag')}"></div>
+    <div th:replace="~{fragments/header :: header(${edit} ? 'Edit a tag' : 'Add a new tag')}"></div>
     <div th:replace="~{fragments/navbar :: navbar}"></div>
 
     <main>
