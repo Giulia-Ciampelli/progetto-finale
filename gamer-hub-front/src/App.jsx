@@ -13,7 +13,9 @@ import GameDetails from './pages/GameDetails.jsx';
 import { APIContextProvider } from './context/APIContext.jsx';
 
 // stile
-import './App.css';
+import './index.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+// import 'bootstrap/dist/js/bootstrap.bundle.min.js'; in caso di modali o effetti scroll
 
 // #endregion importazioni
 

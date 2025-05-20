@@ -14,8 +14,8 @@ export const APIContextProvider = ({ children }) => {
         fetch(url)
             .then(res => res.json())
             .then(data => {
-                console.log(data.games);
-                setGames(data.games);
+                console.log(data);
+                setGames(data);
                 setLoading(false);
             })
             .catch(err => {
