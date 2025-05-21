@@ -18,23 +18,22 @@ export default function GameList() {
         <>
             <div className="row row-cols-2 row-cols-md-3 row-cols-lg-4 g-4 justify-content-center mx-0">
                 {loading ? <Loader /> :
-                    (
-                        <div className="col">
-                            {games.map((game) => (
-                                <Link to={`/games/${game.id}`} key={game.id} className="text-decoration-none">
-                                    <div className="card bg-card" game={game}>
-                                        <p className="txt-primary">
-                                            Name: {game.name}
-                                        </p>
-                                        <p className="txt-primary">
-                                            Price: {game.price}€
-                                        </p>
-                                        <img src={game.url} alt={game.name} />
-                                    </div>
-                                </Link>
-                            ))}
+                    games.map((game) => (
+                        <div className="col" key={game.id}>
+                            <Link to={`/games/${game.id}`} className="text-decoration-none">
+                                <div className="card align-items-center px-4 bg-card">
+                                    <p className="card-title fw-bold py-2 txt-primary">
+                                        {game.name}
+                                    </p>
+                                    <img className="img-fluid same-height" src={game.url} alt={game.name} />
+                                    <p className="card-text py-2 txt-primary">
+                                        Price: {game.price}€
+                                    </p>
+                                </div>
+                            </Link>
                         </div>
-                    )}
+                    ))
+                }
             </div>
         </>
     )
