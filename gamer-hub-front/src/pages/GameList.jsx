@@ -6,6 +6,7 @@ import APIContext from "../context/APIContext.jsx";
 
 // componenti
 import Loader from "../components/Loader.jsx";
+import SearchBar from "../components/Searchbar.jsx";
 
 // custom hooks
 import usePageTitle from "../hooks/PageTitle.jsx";
@@ -20,7 +21,8 @@ export default function GameList() {
 
     return (
         <>
-            <div className="row row-cols-2 row-cols-md-3 row-cols-lg-4 g-4 justify-content-center mx-0">
+            <SearchBar />
+            <div className="row row-cols-2 row-cols-md-3 row-cols-lg-4 g-4 justify-content-center m-0">
                 {loading ? (
                     <Loader />
                 ) : games?.length > 0 ? (
@@ -41,7 +43,7 @@ export default function GameList() {
                     ))
                 ) : (
                     <p className="text-center fs-3">
-                        No games available yet
+                        No games found
                     </p>
                 )}
             </div>

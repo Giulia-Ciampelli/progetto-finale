@@ -44,7 +44,7 @@ export const APIContextProvider = ({ children }) => {
 
     // ritorno provider
     return (
-        <APIContext.Provider value={{ games, gameDetails, fetchGameById, loading, title, setTitle }}>
+        <APIContext.Provider value={{ games, setGames, gameDetails, fetchGameById, loading, title, setTitle }}>
             {children}
         </APIContext.Provider>
     )

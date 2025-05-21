@@ -93,6 +93,12 @@ main {
 
 /* #endregion colori */
 
+a {
+  color: var(--text-secondary) !important;
+  text-decoration: none !important;
+  margin: 0 .5rem;
+}
+
 .same-height {
   width: 100% !important;
   height: 15vw !important;

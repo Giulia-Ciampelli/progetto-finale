@@ -23,7 +23,9 @@ export default function GameDetails() {
     }, [numericId, gameDetails]);
 
     useEffect(() => {
-        setTitle(`Details - ${gameDetails.name}`);
+        if (gameDetails) {
+            setTitle(`Details - ${gameDetails.name}`);
+        }
     })
 
     usePageTitle(gameDetails?.name ? `GamerHub - ${gameDetails.name}` : "Loading...");
@@ -33,13 +35,12 @@ export default function GameDetails() {
     }
 
     return (
-        <div className="col-12">
+        <div className="col-12 mt-3">
             <button onClick={() => navigate(-1)} className="btn btn-sm bg-accent2">
                 Back to games
             </button>
             {gameDetails ? (
                 <>
-                    <h1>{gameDetails.name}</h1>
                     <div className="card p-4 my-3 bg-card">
                         <div className="row">
                             <div className="col-md-6">
@@ -47,6 +48,9 @@ export default function GameDetails() {
                             </div>
                             <div className="col-md-6">
                                 <div className="card-body">
+                                    <h1 className="txt-primary">
+                                        {gameDetails.name}
+                                    </h1>
                                     <p className="card-text txt-primary mt-4">
                                         Description: {gameDetails.description}
                                     </p>
@@ -56,13 +60,13 @@ export default function GameDetails() {
 
                                     {/* sezione saldi */}
                                     {gameDetails.sales?.length > 0 ? (
-                                        <div className="card p-4 my-3 bg-accent1">
+                                        <div className="card p-4 my-3 bg-success">
                                             <p className="card-title fw-bold txt-primary">
                                                 Active sales:
                                             </p>
                                             <ul>
                                                 {gameDetails.sales.map(sale => (
-                                                    <li key={sale.id}>
+                                                    <li className="list-unstyled" key={sale.id}>
                                                         <p className="card-text txt-primary">
                                                             Name: {sale.title}
                                                         </p>
@@ -87,13 +91,13 @@ export default function GameDetails() {
                                     {/* sezione piattaforme */}
                                     {gameDetails.platforms?.length > 0 ?
                                         (
-                                            <div className="card p-4 my-3 bg-accent1">
+                                            <div className="card p-4 my-3 bg">
                                                 <p className="card-title fw-bold txt-primary">
                                                     Platforms:
                                                 </p>
                                                 <ul>
                                                     {gameDetails.platforms.map(platform => (
-                                                        <li key={platform.id}>
+                                                        <li className="list-unstyled badge" key={platform.id}>
                                                             <p className="card-text txt-primary">
                                                                 {platform.name}
                                                             </p>
@@ -112,13 +116,13 @@ export default function GameDetails() {
                                     {/* sezione tags */}
                                     {gameDetails.tags?.length > 0 ?
                                         (
-                                            <div className="card p-4 my-3 bg-accent1">
+                                            <div className="card p-4 my-3 bg">
                                                 <p className="card-title fw-bold txt-primary">
                                                     Tags:
                                                 </p>
                                                 <ul>
                                                     {gameDetails.tags.map(tag => (
-                                                        <li key={tag.id}>
+                                                        <li className="list-unstyled badge" key={tag.id}>
                                                             <p className="card-text txt-primary">
                                                                 {tag.name}
                                                             </p>

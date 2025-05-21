@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 // import org.springframework.web.bind.annotation.PutMapping;
 // import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 // import jakarta.validation.Valid;
@@ -30,8 +31,13 @@ public class GameRestController {
 
     // index
     @GetMapping
-    public List<Game> index() {
+    public List<Game> index(@RequestParam(required = false) String name) {
         List<Game> games = gameService.findAll();
+
+        if (name != null && !name.isBlank()) {
+            return gameService.findByName(name);
+        }
+
         return games;
     }
 
