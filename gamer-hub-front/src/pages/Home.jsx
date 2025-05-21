@@ -1,8 +1,18 @@
+import { useContext, useEffect } from "react";
+
+// context
+import APIContext from "../context/APIContext.jsx";
+
 // custom hooks
 import usePageTitle from "../hooks/PageTitle.jsx";
 
 export default function Home() {
+    const { setTitle } = useContext(APIContext);
     usePageTitle("GamerHub - Home");
+
+    useEffect(() => {
+        setTitle("Home");
+    })
 
     return (
         <>

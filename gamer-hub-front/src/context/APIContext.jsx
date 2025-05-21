@@ -6,6 +6,7 @@ export const APIContextProvider = ({ children }) => {
     const [gameDetails, setGameDetails] = useState(null); // variabile show
     const url = "http://127.0.0.1:8080/api/games";
     const [loading, setLoading] = useState(false); // variabile loader
+    const [title, setTitle] = useState(""); // variabile titolo
 
     // fetch index
     useEffect(() => {
@@ -43,7 +44,7 @@ export const APIContextProvider = ({ children }) => {
 
     // ritorno provider
     return (
-        <APIContext.Provider value={{ games, gameDetails, fetchGameById, loading }}>
+        <APIContext.Provider value={{ games, gameDetails, fetchGameById, loading, title, setTitle }}>
             {children}
         </APIContext.Provider>
     )

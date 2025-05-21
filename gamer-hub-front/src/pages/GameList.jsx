@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 // context
@@ -11,13 +11,19 @@ import Loader from "../components/Loader.jsx";
 import usePageTitle from "../hooks/PageTitle.jsx";
 
 export default function GameList() {
-    const { games, loading } = useContext(APIContext);
+    const { games, loading, setTitle } = useContext(APIContext);
     usePageTitle("GamerHub - Games");
+
+    useEffect(() => {
+        setTitle("Our available games");
+    })
 
     return (
         <>
             <div className="row row-cols-2 row-cols-md-3 row-cols-lg-4 g-4 justify-content-center mx-0">
-                {loading ? <Loader /> :
+                {loading ? (
+                    <Loader />
+                ) : games?.length > 0 ? (
                     games.map((game) => (
                         <div className="col" key={game.id}>
                             <Link to={`/games/${game.id}`} className="text-decoration-none">
@@ -33,8 +39,12 @@ export default function GameList() {
                             </Link>
                         </div>
                     ))
-                }
+                ) : (
+                    <p className="text-center fs-3">
+                        No games available yet
+                    </p>
+                )}
             </div>
         </>
-    )
+    );
 }

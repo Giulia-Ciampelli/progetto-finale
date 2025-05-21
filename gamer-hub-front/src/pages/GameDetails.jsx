@@ -11,10 +11,9 @@ import Loader from "../components/Loader.jsx";
 import usePageTitle from "../hooks/PageTitle.jsx";
 
 export default function GameDetails() {
-    const { gameDetails, fetchGameById, loading } = useContext(APIContext);
+    const { gameDetails, fetchGameById, loading, setTitle } = useContext(APIContext);
     const { id } = useParams();
     const numericId = Number(id);
-
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -22,6 +21,10 @@ export default function GameDetails() {
             fetchGameById(numericId);
         }
     }, [numericId, gameDetails]);
+
+    useEffect(() => {
+        setTitle(`Details - ${gameDetails.name}`);
+    })
 
     usePageTitle(gameDetails?.name ? `GamerHub - ${gameDetails.name}` : "Loading...");
 
