@@ -25,7 +25,7 @@ export default function Home() {
                     Browse our curated collection of video games available across all major platforms. Whether you're into action-packed adventures or relaxing indie gems, we've got something for you.
                 </h4>
                 <p className="fs-5 my-4">
-                    🧩 By Platform<br />
+                    🧩 Available on multiple Platforms:<br />
                     Explore games on:<br />
                     - PC<br />
                     - PlayStation<br />
@@ -34,7 +34,7 @@ export default function Home() {
                     - Mobile<br />
                 </p>
                 <p className="fs-5 my-4">
-                    🏷️ By Tags<br />
+                    🏷️ Various Tags:<br />
                     Find games with popular themes and genres:<br />
                     Strategy, Horror, Casual, Multiplayer, Open World, Puzzle, and more...
                 </p>
