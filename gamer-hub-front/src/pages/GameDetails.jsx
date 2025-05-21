@@ -42,97 +42,97 @@ export default function GameDetails() {
                             <div className="col-md-6">
                                 <img className="img-fluid" src={gameDetails.url} alt={gameDetails.url} />
                             </div>
-                        </div>
-                        <div className="col-md-6">
-                            <div className="card-body">
-                                <p className="card-text txt-primary mt-4">
-                                    Description: {gameDetails.description}
-                                </p>
-                                <p className="card-text txt-primary">
-                                    Price: {gameDetails.price}€
-                                </p>
-                            </div>
-                        </div>
-
-                        {/* sezione saldi */}
-                        {gameDetails.sales?.length > 0 ? (
-                            <div className="card p-4 my-3 bg-accent1">
-                                <p className="card-title fw-bold txt-primary">
-                                    Active sales:
-                                </p>
-                                <ul>
-                                    {gameDetails.sales.map(sale => (
-                                        <li key={sale.id}>
-                                            <p className="card-text txt-primary">
-                                                Name: {sale.title}
-                                            </p>
-                                            <p className="card-text txt-primary">
-                                                Starts: {sale.startDate}
-                                            </p>
-                                            <p className="card-text txt-primary">
-                                                Finishes: {sale.finishDate}
-                                            </p>
-                                        </li>
-                                    ))}
-                                </ul>
-                            </div>
-                        ) : (
-                            <div className="card p-4 my-3 bg-divider">
-                                <p className="card-title fw-bold txt-warning">
-                                    No sales available
-                                </p>
-                            </div>
-                        )}
-
-                        {/* sezione piattaforme */}
-                        {gameDetails.platforms?.length > 0 ?
-                            (
-                                <div className="card p-4 my-3 bg-accent1">
-                                    <p className="card-title fw-bold txt-primary">
-                                        Platforms:
+                            <div className="col-md-6">
+                                <div className="card-body">
+                                    <p className="card-text txt-primary mt-4">
+                                        Description: {gameDetails.description}
                                     </p>
-                                    <ul>
-                                        {gameDetails.platforms.map(platform => (
-                                            <li key={platform.id}>
-                                                <p className="card-text txt-primary">
-                                                    {platform.name}
+                                    <p className="card-text txt-primary">
+                                        Price: {gameDetails.price}€
+                                    </p>
+
+                                    {/* sezione saldi */}
+                                    {gameDetails.sales?.length > 0 ? (
+                                        <div className="card p-4 my-3 bg-accent1">
+                                            <p className="card-title fw-bold txt-primary">
+                                                Active sales:
+                                            </p>
+                                            <ul>
+                                                {gameDetails.sales.map(sale => (
+                                                    <li key={sale.id}>
+                                                        <p className="card-text txt-primary">
+                                                            Name: {sale.title}
+                                                        </p>
+                                                        <p className="card-text txt-primary">
+                                                            Starts: {sale.startDate}
+                                                        </p>
+                                                        <p className="card-text txt-primary">
+                                                            Finishes: {sale.finishDate}
+                                                        </p>
+                                                    </li>
+                                                ))}
+                                            </ul>
+                                        </div>
+                                    ) : (
+                                        <div className="card p-4 my-3 bg-divider">
+                                            <p className="card-title fw-bold txt-warning">
+                                                No sales available
+                                            </p>
+                                        </div>
+                                    )}
+
+                                    {/* sezione piattaforme */}
+                                    {gameDetails.platforms?.length > 0 ?
+                                        (
+                                            <div className="card p-4 my-3 bg-accent1">
+                                                <p className="card-title fw-bold txt-primary">
+                                                    Platforms:
                                                 </p>
-                                            </li>
-                                        ))}
-                                    </ul>
-                                </div>
-                            ) : (
-                                <div className="card p-4 my-3 bg-divider">
-                                    <p className="card-title fw-bold txt-warning">
-                                        No platforms available yet
-                                    </p>
-                                </div>
-                            )}
-
-                        {/* sezione tags */}
-                        {gameDetails.tags?.length > 0 ?
-                            (
-                                <div className="card p-4 my-3 bg-accent1">
-                                    <p className="card-title fw-bold txt-primary">
-                                        Tags:
-                                    </p>
-                                    <ul>
-                                        {gameDetails.tags.map(tag => (
-                                            <li key={tag.id}>
-                                                <p className="card-text txt-primary">
-                                                    {tag.name}
+                                                <ul>
+                                                    {gameDetails.platforms.map(platform => (
+                                                        <li key={platform.id}>
+                                                            <p className="card-text txt-primary">
+                                                                {platform.name}
+                                                            </p>
+                                                        </li>
+                                                    ))}
+                                                </ul>
+                                            </div>
+                                        ) : (
+                                            <div className="card p-4 my-3 bg-divider">
+                                                <p className="card-title fw-bold txt-warning">
+                                                    No platforms available yet
                                                 </p>
-                                            </li>
-                                        ))}
-                                    </ul>
+                                            </div>
+                                        )}
+
+                                    {/* sezione tags */}
+                                    {gameDetails.tags?.length > 0 ?
+                                        (
+                                            <div className="card p-4 my-3 bg-accent1">
+                                                <p className="card-title fw-bold txt-primary">
+                                                    Tags:
+                                                </p>
+                                                <ul>
+                                                    {gameDetails.tags.map(tag => (
+                                                        <li key={tag.id}>
+                                                            <p className="card-text txt-primary">
+                                                                {tag.name}
+                                                            </p>
+                                                        </li>
+                                                    ))}
+                                                </ul>
+                                            </div>
+                                        ) : (
+                                            <div className="card p-4 my-3 bg-divider">
+                                                <p className="card-title fw-bold txt-warning">
+                                                    No platforms available yet
+                                                </p>
+                                            </div>
+                                        )}
                                 </div>
-                            ) : (
-                                <div className="card p-4 my-3 bg-divider">
-                                    <p className="card-title fw-bold txt-warning">
-                                        No platforms available yet
-                                    </p>
-                                </div>
-                            )}
+                            </div>
+                        </div>
                     </div>
                 </>
             ) : (
