@@ -59,6 +59,10 @@ main {
   color: var(--error) !important;
 }
 
+.txt-dark {
+  color: var(--bg);
+}
+
 .bg {
   background-color: var(--bg) !important;
 }

@@ -97,8 +97,8 @@ export default function GameDetails() {
                                                 </p>
                                                 <ul>
                                                     {gameDetails.platforms.map(platform => (
-                                                        <li className="list-unstyled badge" key={platform.id}>
-                                                            <p className="card-text txt-primary">
+                                                        <li className="list-unstyled badge bg-accent2 mx-1" key={platform.id}>
+                                                            <p className="card-text txt-dark">
                                                                 {platform.name}
                                                             </p>
                                                         </li>
@@ -122,8 +122,8 @@ export default function GameDetails() {
                                                 </p>
                                                 <ul>
                                                     {gameDetails.tags.map(tag => (
-                                                        <li className="list-unstyled badge" key={tag.id}>
-                                                            <p className="card-text txt-primary">
+                                                        <li className="list-unstyled badge bg-accent1 mx-1" key={tag.id}>
+                                                            <p className="card-text txt-dark">
                                                                 {tag.name}
                                                             </p>
                                                         </li>
